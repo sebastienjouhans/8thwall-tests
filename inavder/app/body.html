@@ -1,0 +1,109 @@
+
+
+<a-scene 
+xrextras-almost-there
+xrextras-loading
+xrextras-runtime-error
+xrweb>
+
+
+    <a-assets>
+      <a-asset-item id="invader1" src="./assets/invader1.glb"></a-asset-item>     
+      <a-asset-item id="invader2" src="./assets/invader2.glb"></a-asset-item>     
+      <a-asset-item id="invader3" src="./assets/invader3.glb"></a-asset-item>     
+      <a-asset-item id="invader4" src="./assets/invader4.glb"></a-asset-item>     
+      <a-asset-item id="invader5" src="./assets/invader5.glb"></a-asset-item>     
+    </a-assets>  
+
+    <a-entity light="type: ambient; intensity: 0.7;"></a-entity>
+    <a-entity
+      light="
+        type: directional;
+        intensity: 0.5;
+        castShadow: true;
+        shadowMapHeight:512;
+        shadowMapWidth:512;
+        shadowCameraTop: 10;
+        target: #gun;"
+      position="1 8 -5"
+      xrextras-attach="target: gun; offset: 0 15 0;"
+      shadow>
+    </a-entity>
+
+    <a-entity 
+      id="bulletTemplate" 
+      bullet 
+      geometry="primitive: sphere; radius: 0.03" 
+      material="color: orange">
+    </a-entity>
+
+    <a-entity 
+      id="invader1"
+      position="0 0 -8"
+      rotation="90 0 0"
+      scale="1 1 1"
+      gltf-model="#invader1"
+      target="healthPoints: 1"
+      animation="property: rotation; to: 90 360 0; easing: linear; loop: true; dur: 5000"
+      hit-handler>
+    </a-entity>
+
+    <a-entity 
+      id="invader2"
+      position="0 -2 -8"
+      rotation="0 0 0"
+      scale="1 1 1"
+      gltf-model="#invader2"
+      target="healthPoints: 1"
+      animation="property: rotation; to: 0 360 0; easing: linear; loop: true; dur: 5000"
+      hit-handler>
+    </a-entity>
+
+    
+    <a-entity 
+      id="invader3"
+      position="0 2 -8"
+      rotation="0 0 0"
+      scale="1 1 1"
+      gltf-model="#invader3"
+      target="healthPoints: 1"
+      animation="property: rotation; to: 0 360 0; easing: linear; loop: true; dur: 5000"
+      hit-handler>
+    </a-entity>
+
+    <a-entity 
+      id="invader4"
+      position="2 2 -8"
+      rotation="0 0 0"
+      scale="1 1 1"
+      gltf-model="#invader4"
+      target="healthPoints: 1"
+      animation="property: rotation; to: 0 360 0; easing: linear; loop: true; dur: 5000"
+      hit-handler>
+    </a-entity>
+
+    <a-entity 
+      id="invader5"
+      position="2 -2 -8"
+      rotation="0 0 0"
+      scale="1 1 1"
+      gltf-model="#invader5"
+      target="healthPoints: 1"
+      animation="property: rotation; to: 0 360 0; easing: linear; loop: true; dur: 5000"
+      hit-handler>
+    </a-entity>
+
+    <a-camera 
+      id="camera" 
+      >
+      <a-entity 
+        id="gun" 
+        shooter 
+        geometry="primitive: box; width: 0.05; height: 0.05; depth: 0.3" 
+        material="color: red" 
+        click-to-shoot 
+        position="0 -.15 -.5">
+      </a-entity>
+
+    </a-camera>
+  </a-scene>

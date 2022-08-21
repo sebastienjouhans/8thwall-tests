@@ -1,0 +1,28 @@
+
+#joystick {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 175%;
+    width: 100%;
+    background: rgba(0, 255, 0, 0.1);
+  }
+  
+  /*#joystickBackground {*/
+  /*  position: absolute;*/
+  /*  left: 0;*/
+  /*  bottom: 0;*/
+  /*  height: 25%;*/
+  /*  width: 100%;*/
+  /*  background: rgba(100, 100, 100, 0.6);*/
+  /*}*/
+  
+  .front  {
+    opacity: 0.6 !important;
+    background: yellow !important;
+  }
+  
+  .back  {
+    opacity: 0.8 !important;
+    background: green !important;
+  }

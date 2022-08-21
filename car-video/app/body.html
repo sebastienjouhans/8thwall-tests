@@ -1,0 +1,133 @@
+<!-- Copyright (c) 2020 8th Wall, Inc. -->
+<!-- body.html is optional; elements will be added to your html body after app.js is loaded. -->
+
+<a-scene
+  cursor="rayOrigin: mouse" 
+  raycaster="objects: [data-clickable]"
+  xrextras-almost-there
+  xrextras-loading
+  xrextras-runtime-error
+  renderer="colorManagement: true"
+  xrweb>
+
+  <!-- We can define assets here to be loaded when A-Frame initializes -->
+  <a-assets>
+    <img
+      id="target-icon"
+      src="./assets/target-icon.png">
+    <video
+      id="man-greenscreen-video"
+      playsinline
+      crossorigin="anonymous"
+      loop="false"
+      src="./assets/man-greenscreen.mp4">
+    </video>
+    <video
+      id="woman-greenscreen-video"
+      playsinline
+      crossorigin="anonymous"
+      loop="false"
+      src="./assets/woman-greenscreen.mp4">
+    </video>
+    <a-asset-item 
+      id="carModel" 
+      src="assets/f1-car.glb">
+    </a-asset-item>
+  </a-assets>
+
+  <!-- The raycaster will emit mouse events on scene objects specified with the cantap class -->
+  <a-camera
+    id="camera"
+    position="0 8 8">
+  </a-camera>
+
+  <a-entity
+    light="
+      type: directional;
+      intensity: 0.8;
+      castShadow: true;
+      shadowMapHeight:2048;
+      shadowMapWidth:2048;
+      shadowCameraTop: 10;
+      target: #model;"
+    xrextras-attach="target: model; offset: 1 15 3;"
+    shadow>
+  </a-entity>
+
+  <a-light type="ambient" intensity="0.7"></a-light>
+
+  <a-entity
+    position="0 0 -5">
+    <a-image 
+      tap-button="videoId: #man-greenscreen-video; 
+      videoEntityId: #video1-entity; 
+      otherVideoEntityId: #video2-entity"
+      data-clickable
+      id="button1"
+      color="#0000ff" 
+      scale="2 2"
+      rotation="90 0 0"
+      position="-3 0 5"
+      src="#target-icon"
+      visible="true">
+    </a-image>
+
+    <a-image 
+      tap-button="videoId: #woman-greenscreen-video; 
+      videoEntityId: #video2-entity; 
+      otherVideoEntityId: #video1-entity"
+      data-clickable
+      id="button2"
+      color="#00ff00" 
+      scale="2 2"
+      rotation="90 0 0"
+      position="3 0 5"
+      src="#target-icon"
+      visible="true">
+    </a-image>
+  
+
+    <a-entity 
+      id="model" 
+      gltf-model="#carModel" 
+      scale="3 3 3" 
+      shadow="receive: false">
+    </a-entity>
+  
+
+
+
+    <a-entity
+      id="video1-entity"
+      scale="15 15"
+      position="-4 4.5 -6"
+      rotation="0 0 0"
+      material="shader: chromakey; src: #man-greenscreen-video; color: 0.1 0.9 0.2"
+      geometry="primitive: plane; height: 0.6; width:0.6;"
+      visible=false>
+    </a-entity>
+
+
+    <a-entity
+      id="video2-entity"
+      scale="15 15"
+      position="4 4.5 -6"
+      rotation="0 0 0"
+      material="shader: chromakey; src: #woman-greenscreen-video; color: 0.1 0.9 0.2"
+      geometry="primitive: plane; height: 0.6; width:0.6;"
+      visible=false>
+    </a-entity>
+  </a-entity>      
+
+
+  <a-plane
+    id="ground" 
+    rotation="-90 0 0" 
+    width="1000" 
+    height="1000" 
+    material="shader: shadow" 
+    shadow>
+  </a-plane>
+
+
+</a-scene>
